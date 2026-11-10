@@ -1,0 +1,6 @@
+import React from 'react';
+export function Tabs({tabs=[],value,defaultValue,onChange,variant='line',style}){const first=typeof tabs[0]==='string'?tabs[0]:tabs[0]&&tabs[0].value;const [v,setV]=React.useState(defaultValue||first);const cur=value!==undefined?value:v;
+return <div role="tablist" style={{display:'flex',gap:variant==='line'?24:4,borderBottom:variant==='line'?'1px solid var(--border-1)':'none',background:variant==='segmented'?'var(--surface-1)':'transparent',padding:variant==='segmented'?3:0,border:variant==='segmented'?'1px solid var(--border-1)':undefined,width:variant==='segmented'?'fit-content':undefined,...style}}>
+{tabs.map(t=>{const val=typeof t==='string'?t:t.value;const lab=typeof t==='string'?t:t.label;const on=cur===val;
+const st=variant==='line'?{padding:'10px 0',marginBottom:-1,borderBottom:'2px solid '+(on?'var(--accent)':'transparent'),color:on?'var(--fg-1)':'var(--fg-3)'}:{padding:'7px 14px',background:on?'var(--surface-3)':'transparent',color:on?'var(--fg-1)':'var(--fg-3)'};
+return <button key={val} role="tab" aria-selected={on} onClick={()=>{setV(val);onChange&&onChange(val)}} style={{border:0,background:'transparent',font:'600 14px/1 var(--font-sans)',cursor:'pointer',borderRadius:'var(--radius-1)',transition:'color var(--dur-fast)',...st}}>{lab}</button>;})}</div>;}

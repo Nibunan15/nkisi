@@ -1,0 +1,19 @@
+:root{
+--font-display:'Zilla Slab',Rockwell,Georgia,serif;
+--font-sans:'Manrope',system-ui,sans-serif;
+--font-mono:'JetBrains Mono',ui-monospace,monospace;
+--fw-regular:400;/* @kind other */--fw-medium:500;/* @kind other */--fw-semibold:600;/* @kind other */--fw-bold:700;/* @kind other */
+--fs-display:64px;--fs-h1:44px;--fs-h2:32px;--fs-h3:24px;--fs-h4:19px;--fs-body-lg:17px;--fs-body:15px;--fs-sm:13px;--fs-xs:11px;
+--lh-tight:1.08;/* @kind other */--lh-snug:1.25;/* @kind other */--lh-body:1.55;/* @kind other */
+--ls-display:-0.01em;/* @kind other */--ls-eyebrow:0.16em;/* @kind other */
+--text-display:var(--fw-semibold) var(--fs-display)/var(--lh-tight) var(--font-display);
+--text-h1:var(--fw-semibold) var(--fs-h1)/var(--lh-tight) var(--font-display);
+--text-h2:var(--fw-semibold) var(--fs-h2)/var(--lh-snug) var(--font-display);
+--text-h3:var(--fw-semibold) var(--fs-h3)/var(--lh-snug) var(--font-display);
+--text-h4:var(--fw-bold) var(--fs-h4)/var(--lh-snug) var(--font-sans);
+--text-body-lg:var(--fw-regular) var(--fs-body-lg)/var(--lh-body) var(--font-sans);
+--text-body-md:var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans);
+--text-label:var(--fw-semibold) var(--fs-sm)/1.2 var(--font-sans);
+--text-eyebrow:var(--fw-bold) var(--fs-xs)/1.2 var(--font-sans);
+--text-code:var(--fw-regular) var(--fs-sm)/1.5 var(--font-mono);
+}

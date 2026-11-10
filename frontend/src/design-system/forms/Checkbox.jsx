@@ -1,0 +1,5 @@
+import React from 'react';
+export function Checkbox({name,label,checked,defaultChecked=false,onChange,disabled=false,style}){const [c,setC]=React.useState(defaultChecked);const on=checked!==undefined?checked:c;
+return <label style={{display:'inline-flex',alignItems:'center',gap:10,cursor:disabled?'not-allowed':'pointer',opacity:disabled?.45:1,font:'var(--text-body-md)',color:'var(--fg-1)',...style}}>
+<input type="checkbox" name={name} checked={on} disabled={disabled} onChange={e=>{setC(e.target.checked);onChange&&onChange(e.target.checked)}} style={{position:'absolute',opacity:0,width:0,height:0}}/>
+<span style={{width:18,height:18,display:'inline-flex',alignItems:'center',justifyContent:'center',background:on?'var(--accent)':'var(--ink-950)',border:'1px solid '+(on?'var(--accent)':'var(--border-2)'),borderRadius:'var(--radius-1)',transition:'background var(--dur-fast)'}}>{on&&<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-950)" strokeWidth="3.5"><path d="M5 12l5 5L20 7"/></svg>}</span>{label}</label>;}

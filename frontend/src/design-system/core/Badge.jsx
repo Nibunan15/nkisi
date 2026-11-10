@@ -1,0 +1,4 @@
+import React from 'react';
+const map={accent:['var(--accent-subtle)','var(--fg-accent)'],success:['var(--success-subtle)','var(--success)'],warning:['var(--warning-subtle)','var(--warning)'],danger:['var(--danger-subtle)','var(--danger)'],neutral:['var(--surface-3)','var(--fg-2)'],solid:['var(--accent)','var(--fg-on-accent)']};
+export function Badge({tone='accent',dot=false,children,style}){const [bg,fg]=map[tone]||map.accent;
+return <span style={{display:'inline-flex',alignItems:'center',gap:6,height:20,padding:'0 8px',background:bg,color:fg,font:'700 11px/1 var(--font-sans)',letterSpacing:'.06em',textTransform:'uppercase',whiteSpace:'nowrap',flex:'none',clipPath:'var(--clip-chamfer-sm)',...style}}>{dot&&<span style={{width:6,height:6,background:'currentColor'}}></span>}{children}</span>;}

@@ -1,0 +1,5 @@
+import React from 'react';
+export function IconButton({variant='ghost',size='md',label,disabled=false,children,onClick,style}){
+const [h,setH]=React.useState(false);const d={sm:30,md:38,lg:46}[size]||38;
+const v={primary:[h?'var(--accent-hover)':'var(--accent)','var(--fg-on-accent)','transparent'],secondary:[h?'var(--surface-3)':'var(--surface-2)','var(--fg-1)','var(--border-2)'],ghost:[h?'var(--accent-subtle)':'transparent',h?'var(--fg-accent)':'var(--fg-2)','transparent']}[variant];
+return <button aria-label={label} title={label} disabled={disabled} onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{width:d,height:d,display:'inline-flex',alignItems:'center',justifyContent:'center',padding:0,background:disabled?'transparent':v[0],color:disabled?'var(--fg-disabled)':v[1],border:'1px solid '+v[2],borderRadius:'var(--radius-1)',cursor:disabled?'not-allowed':'pointer',transition:'background var(--dur-fast) var(--ease-out)',...style}}>{children}</button>;}

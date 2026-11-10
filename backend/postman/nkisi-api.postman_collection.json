@@ -1,0 +1,151 @@
+{
+  "info": {
+    "name": "N'kisi Global Consulting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "adminKey",
+      "value": ""
+    },
+    {
+      "key": "enquiryId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Submit contact enquiry",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('201', ()=>pm.response.to.have.status(201));",
+              "const j=pm.response.json(); if(j.data) pm.collectionVariables.set('enquiryId', j.data.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/enquiries",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"source\": \"contact\",\n  \"name\": \"Asha Kumar\",\n  \"email\": \"asha@example.com\",\n  \"organization\": \"Acme Pvt Ltd\",\n  \"services\": [\n    \"HR Consulting\"\n  ],\n  \"message\": \"We need a leadership program for 40 managers.\",\n  \"subscribe\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Submit work-with-us enquiry",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/enquiries",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"source\": \"work-with-us\",\n  \"clientType\": \"Academic\",\n  \"services\": [\n    \"Corporate Outbound Training\",\n    \"Brand Strategy\"\n  ],\n  \"name\": \"Ravi\",\n  \"email\": \"ravi@college.edu\",\n  \"organization\": \"Example College\",\n  \"size\": \"100–500\",\n  \"message\": \"Outbound training for final-year students in January.\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Submit invalid enquiry (expect 422)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/enquiries",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"source\":\"contact\",\"name\":\"A\",\"email\":\"not-an-email\"}"
+        }
+      }
+    },
+    {
+      "name": "Admin · list enquiries",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-admin-key",
+            "value": "{{adminKey}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/enquiries?status=new&page=1&limit=20"
+      }
+    },
+    {
+      "name": "Admin · get enquiry",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-admin-key",
+            "value": "{{adminKey}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/enquiries/{{enquiryId}}"
+      }
+    },
+    {
+      "name": "Admin · update status",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "x-admin-key",
+            "value": "{{adminKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/enquiries/{{enquiryId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"status\":\"contacted\"}"
+        }
+      }
+    },
+    {
+      "name": "Admin · delete enquiry",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-admin-key",
+            "value": "{{adminKey}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/enquiries/{{enquiryId}}"
+      }
+    }
+  ]
+}
